@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,100;1,400;1,700&family=Playfair+Display&family=Raleway:ital,wght@1,200&display=swap" rel="stylesheet">
+        <style>
+          body {
+            background-color: #F0F8FF;
+            margin-left: 20rem;
+            margin-right: 20rem;
+            margin-bottom: 10rem;
+          }
+
+          .container {
+            display: flex;
+            flex-direction: column;
+          }
+
+          svg {
+            overflow: visible;
+          }
+
+
+          h1, h2, h3, h4, h5 {
+            font-family: "nyt-franklin", arial, helvetica, sans-serif;
+            margin-left: 1rem;
+            margin-right: 1rem;
+          }
+
+          h1 {
+            font-size: 75px;
+            font-weight: 100;
+            font-style: italic;
+            margin-bottom: 1rem;
+            margin-top: 10rem;
+            color: #1d4f16;
+            /* color: #d5b4b8; */
+          }
+
+          h2 {
+            font-family: "nyt-franklin", arial, helvetica, sans-serif;
+            color: #353802;
+            margin-top: 1rem;
+            font-size: 24px;
+          }
+
+          h3 {
+            font-weight: 400;
+            font-style: italic;
+          }
+
+          h5 {
+            font-weight: 400;
+            color: #457e3d;
+            font-size: 16px;
+            font-style: italic;
+            font-weight: bold;
+          }
+
+          .spacer {
+              height: 30px;
+          }
+
+          a:link {
+            color: #1d4f16;
+          }
+
+          /* visited link */
+          a:visited {
+            color: #1d4f16;
+          }
+
+          /* mouse over link */
+          a:hover {
+            background-color: #F3e1ef;
+          }
+
+          /* selected link */
+          a:active {
+            color: #7bc158;
+          }
+
+          p {
+            font-family: "nyt-franklin", arial, helvetica, sans-serif;
+            font-size: 18px;
+            color: #353802;
+            margin-left: 1rem;
+            margin-right: 1rem;
+          }
+
+          .caption {
+            font-size: 20px;
+          }
+
+          .highlightgreen {
+            background-color: #E2F5D0;
+          }
+
+          .highlightclip {
+            background-color: #Efe9d2;
+            /* padding: 0.5rem 0.5rem; */
+          }
+
+          .highlightclip:hover {
+            background-color: #E2F5D0;
+            padding: 0.5rem 0.5rem;
+          }
+
+          .clip-container {
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            /* margin-right: 10rem; */
+          }
+
+          .chart-container {
+            max-width: 1050px;
+            /* border: 2px solid red; */
+            margin: 0 auto;
+            /* auto centers the div */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          }
+
+          .x .tick line {
+            stroke: rgba(0, 0, 0, .2);
+          }
+
+          .y .tick line {
+            stroke: rgba(0, 0, 0, .2);
+          }
+
+          .x .domain {
+            display: none;
+          }
+
+          .y .domain {
+            display: none;
+          }
+
+          .y .tick text {
+            font-size: 14px;
+            fill: #333;
+          }
+
+          .x .tick text {
+            font-size: 14px;
+            fill: #333;
+          }
+
+          .highlightpink {
+            text-decoration: underline;
+            color: #d66982;
+          }
+
+          .source {
+            font-size: 12px;
+            color: #777;
+            font-weight: 400;
+            margin-right: 250px;
+          }
+
+          .pop-up {
+            position: absolute;
+            border: 1px solid black;
+            border-radius: 1px;
+            line-height: 1.2;
+            width: 200px;
+            /* height: 100px; */
+            pointer-events: none;
+            background-color: white;
+            padding: 10px;
+          }
+
+          @media (max-width: 768px) {
+            body {
+              background-color: #f7f2df;
+              margin-left: 1.5rem;
+              margin-right: 1.5rem;
+              margin-bottom: 0.25rem;
+            }
+
+            h1 {
+              font-size: 45px;
+              font-weight: 100;
+              margin-top: 5rem;
+              color: #1d4f16;
+              }
+
+            .container {
+              display: block;
+            }
+
+            .clip-container {
+              margin-top: 2rem;
+              margin-bottom: 2rem;
+              margin-right: 0.1rem;
+            }
+          }
+        </style>
+
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="https://unpkg.com/topojson@3"></script>
+        <script src="d3-annotation.min.js"></script>
+
+
+    </head>
+
+    <body>
+
+      <p class="intro">
+        
+      </p>
+
+      <!-- <div class='spacer'></div> -->
+      <div class="chart-container">
+
+        <p class="caption">
+          Tom Brady has retired from football after a 22-year career of 
+          consistent success and unmatched achievement. But his stature as 
+          the N.F.L.’s greatest quarterback may be best understood by seeing 
+          his achievements stacked up against those of hundreds of others who 
+          played the same position.</br></br>
+
+          The charts below does just that, comparing Brady with more than 300 
+          other N.F.L. quarterbacks in playoff wins. 
+          Players who were still active during the 2021 season <a style="color:blue; pointer-events: none">are highlighted</a>.
+        </p>
+
+        <svg width="750px" height="550px" id="multiple-line-chart"></svg>
+
+        <div class='spacer'></div>
+
+        <p class="source">
+          Source: Pro Football Reference
+        </p>
+    </div>
+    </body>
+
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <script>
+        let svgMultipleLine = d3.select("body").select("#multiple-line-chart")
+        console.log({ d3 })
+
+    let margin = { top: 30, right: 30, bottom: 30, left: 0 };
+    let width = 750;
+    let height = 550;
+
+    // load data
+
+    d3.selection.prototype.moveToFront = function() {  
+      return this.each(function(){
+        this.parentNode.appendChild(this);
+      });
+    };
+    d3.selection.prototype.moveToBack = function() {  
+        return this.each(function() { 
+            var firstChild = this.parentNode.firstChild; 
+            if (firstChild) { 
+                this.parentNode.insertBefore(this, firstChild); 
+            } 
+        });
+    };
+    
+    d3.tsv("cumulative-stats.tsv").then(function (data){
+        data.forEach(function (row) {
+            row.player_id = row.player_id
+            row.year = +row.year
+            row.yards = +row.yards
+            row.tds = +row.tds
+            row.att = +row.att
+            row.comp = +row.comp
+            row.playoff_games = +row.playoff_games
+            row.playoff_wins = +row.playoff_wins    
+            row.pb_games = +row.pb_games
+            row.year_start = +row.year_start
+            row.year_end = +row.year_end
+            row.age = +row.age
+        })
+        console.log(data)
+
+        // defining variables
+        let x = d3.scaleLinear()
+            .domain(d3.extent(data.map(function(d) {return d.year} )))
+            .range([margin.left, width-margin.right])
+
+        let y = d3.scaleLinear()
+            .domain(d3.extent(data.map(function(d) {return d.playoff_wins})))
+            .range([height - margin.bottom, margin.top])
+
+        // defining axes
+        let xAxisSettings = d3.axisBottom(x)
+            .ticks(8)
+            .tickSize(8)
+            .tickFormat(d3.format("d"))
+            .tickPadding(10)
+
+        let yAxisSettings = d3.axisRight(y)
+            .tickValues([5, 10, 15, 20, 25, 30, 35])
+            .tickSize(width-margin.right)
+            .tickPadding(10)
+
+        let svg = d3.select("body")
+            .select("svg")
+
+        let yAxisTicks = svgMultipleLine.append("g")
+            .attr("class", "y axis")
+            .call(yAxisSettings)
+
+        let xAxisTicks = svgMultipleLine.append("g")
+            .attr("class", "x axis")
+            .call(xAxisSettings)
+            .attr("transform", `translate(0, ${height - margin.bottom})`)
+
+        let line = d3.line() //define a line function
+            .defined(d => !isNaN(d.playoff_wins))
+            .x(function (d) { return x(d.year) }) //accessing date 
+            .y(function (d) { return y(d.playoff_wins) }) //accesssing value 
+
+        let grouped_data = d3.group(data, d => d.player_id)
+        let highlighted_players = ["StarBa00", "BradTe00", "TarkFr00", "MontJo01", "ElwaJo00"]
+        let maxdata = d3.rollups(
+            data,
+            x => ({
+                maxWins: d3.max(x, d => d.playoff_wins),
+                maxYear: d3.max(x, d => d.year),
+                lastName: x.map(d => d.last_name)[0],
+                fullName: x.map(d => d.full_name)[0],
+                playerAge: x.map(d => d.age)[0]
+            }),
+            d => d.player_id)
+
+        let line_path = svgMultipleLine.append("g")
+            .selectAll(".line")
+            .data(grouped_data)
+            .join("path")
+            .attr("class", function(d) { return "line " +  d[0] })
+            .attr("d", function(d) {
+                return line(d[1]) })
+            .style("fill", "none")
+            .style("stroke", d => {
+                if( d[1].slice(-1)[0]["year"] >= 2021
+                ) { return "#54b3e5" }
+                else if( highlighted_players.indexOf(d[0]) >= 0){ return "#555555" }
+                else{ return "#d0d0d0"}} )
+            .style("stroke-width", d => {
+                if(d[0] == "BradTo00") { 
+                    return "3px"
+                } 
+                else { 
+                    return "1px"
+                }
+            })
+
+        let pts = svgMultipleLine.selectAll("pts")
+            .data(maxdata)
+            .enter()
+            .filter(function(d) { return d[1]["maxWins"] > 0 })
+            .append("circle")
+            .attr("fill", d => {
+                if( d[1]["maxYear"] >= 2021) { return "#54b3e5" }
+                else if( highlighted_players.indexOf(d[0]) >= 0){ return "#555555" }
+                else{ return "#d0d0d0"}})
+            .attr("stroke", "none")
+            .attr("cx", function(d) {return x(d[1]["maxYear"]) })
+            .attr("cy", function(d) { return y(d[1]["maxWins"]) })
+            .attr("r", d => {
+                if(d[0] == "BradTo00") {
+                    return 4.5
+                }
+                else {
+                    return 1.5
+                }
+            })
+
+         let labels = svgMultipleLine.selectAll("labels")
+            .data(maxdata)
+            .enter()
+            .filter(function(d) { 
+                return highlighted_players.indexOf(d[0]) >= 0 || d[0] == "BradTo00" })
+            .append("text")
+            .attr("x", d => {
+                if( d[0] == "BradTo00") { return x(d[1]["maxYear"]) - 50 }
+                else{ return x(d[1]["maxYear"]) + 4 }})
+            .attr("y", d => {
+                if( d[0] == "BradTo00") { return y(d[1]["maxWins"]) - 15 }
+                else{ return y(d[1]["maxWins"]) + 3 }})
+            .text(function(d) {
+                return d[1]["lastName"]})
+            .style("font-size", d => {
+                if( d[0] == "BradTo00") { return 20 }
+                else{ return 10 }})
+            .style("font-family", "Arial")
+            .style("stroke", "white")
+            .style("stroke-width", 0.3)
+            .style("fill", "black")
+            .attr("letter-spacing", 0.4)
+
+        // bottom line
+        let baseline = svgMultipleLine.append("line")
+            .attr("x1", margin.left)
+            .attr("x2", width - margin.left)
+            .attr("y1", y(0))
+            .attr("y2", y(0))
+            .style("stroke", "black")
+            .style("stroke-width", "1.5px")
+
+        // mousover colors
+        let div = d3.select("body").append("div")   
+            .attr("class", "tooltip")               
+            .style("opacity", 0);
+                
+        console.log(line_path.filter(function(d) {
+            return d[1].slice(-1)[0]["year_end"] < 2021 && highlighted_players.indexOf(d[0]) == -1
+        }))
+
+        line_path.on("mouseover", function(event, d) {
+                    let selection = d3.select(this)    
+                    selection.moveToFront()
+                    if(d[1].slice(-1)[0]["year_end"] < 2021 && highlighted_players.indexOf(d[0]) == -1)
+                    {selection.style("stroke", "black").moveToFront()}
+                    })
+
+                .on("mouseout", function(event, d) {  
+                    let selection = d3.select(this)
+                    selection.moveToFront()
+                    if(d[1].slice(-1)[0]["year_end"] < 2021 && highlighted_players.indexOf(d[0]) == -1)
+                    {selection.style("stroke", "#d0d0d0").moveToBack()}})
+
+        })
+    </script>
+
+</html>
