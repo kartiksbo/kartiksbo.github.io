@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Uttar Pradesh - Mandir and Mandal</title>
-    <meta name="description" content="Scrollama: Sticky Side Example" />
+    <title>UP Elections Results - Explained</title>
+    <meta name="description" content="Uttar Pradesh 2022 State Elections Results Explained" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
     <style>
@@ -67,24 +67,105 @@
       }
 
       .step p {
-        text-align: center;
+        text-align: left;
         padding: 1rem;
         font-size: 1.5rem;
       }
     </style>
   </head>
 <body>
-
-	<section id="intro">
+  <main>
+	 <section id="intro">
         <h1 class="intro__hed">A story of Mandir and Mandal in Uttar Pradesh</h1>
         <p class="intro__dek" style="text-align: left;">
           A bi-party contest that converted to a multi-party one, is shifting towards bi-partisanship again.
         </p>
-        <div style="text-align: left;"></br></br>On Thursday, March the 11th of 2022, Uttar Pradesh's election results finally came out after a long month of voting. The takeaways from the result in Uttar Pradesh is this: Of the two ambitious political projects that were launched almost simultaneously in the politically turbulent early part of the 90s, Mandal and Mandir, while the second is on its way towards achieving its aim of forging a national community that transcends faultlines of caste, class and region, the first has fragmented, its egalitarian charge more and more dissipated.</div></br></br>
+        <div style="text-align: left;"></br></br>As the results of Uttar Pradesh's elections finally came out on the 12th of March, 2022 after a long month of voting across 7 months, there is a lot being said about the implications of these results not only in the run-up to the 2024 Lok Sabha elections but also the implications of this victory on the future of Uttar Pradesh. <br><br>
+
+        However, on the two ambitious political projects that were launched almost simultaneously in the politically turbulent early part of the 90s, Mandal and Mandir, there are some major takeaways from the result in Uttar Pradesh.</div></br></br>
 
         <iframe src='https://flo.uri.sh/visualisation/8933720/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:100%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'></div>
-
     </section>
+    <section id="scrolly">
+        <article>
+          <div class="step" data-step="1">
+            <p>The winning BJP's so-called 'Mandir' politics is on its way towards achieving its aim of forging a national community that transcends faultlines of caste, class and region.</p>
+          </div>
+          <div class="step" data-step="2">
+            <p>The regional parties SP and BSP's crushing defeats indicates that the 'Mandal' politics has fragmented with its egalitarian charge more and more dissipated.</p>
+          </div>
+          <div class="step" data-step="3">
+            <p>While BJP and SP had their highest vote shares ever with 41.3% and 32.1% respectively, they won 255 and 111 seats out of the 403 respectively. The BSP, meanwhile, won just 1 seat despite a vote share of 12.9%.</p>
+          </div>
+          <div class="step" data-step="4">
+            <p>After 30 years of multi-partisanship with various coalitions, where even a >25% vote share would affirm a victory in the elections, the last two elections have affirmed a shift back to political bi-partisanship where even 35% vote share isn't enough.</p>
+          </div>
+        </article>
+
+        <div class="sticky-thing">
+          <p style="font-size: 40px;">Uttar Pradesh Elections</p>
+        </div>
+      </section>
+
+      <section id="outro"></section>
+    </main>
+
+    <!-- <div class='debug'></div> -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <script>
+      var main = document.querySelector("main");
+      var scrolly = main.querySelector("#scrolly");
+      var sticky = scrolly.querySelector(".sticky-thing");
+      var article = scrolly.querySelector("article");
+      var steps = article.querySelectorAll(".step");
+
+      // initialize the scrollama
+      var scroller = scrollama();
+
+      // scrollama event handlers
+      function handleStepEnter(response) {
+        // response = { element, direction, index }
+        var el = response.element;
+
+        // remove is-active from all steps
+        // then add is-active to this step
+        steps.forEach(step => step.classList.remove('is-active'));
+        el.classList.add('is-active');
+
+        // update graphic based on step
+        //sticky.querySelector("p").innerText = el.dataset.step;
+        if (el.dataset.step == 1) {
+          sticky.querySelector("p").innerText = "Mandir politics is here to stay";
+          sticky.querySelector("p").style.fontSize = `40px`;
+        } else if (el.dataset.step == 2) {
+          sticky.querySelector("p").innerText = "Mandal politics is fading away";
+          sticky.querySelector("p").style.fontSize = `40px`;
+        } else if (el.dataset.step == 3) {
+          sticky.querySelector("p").innerText = "First-past-the-Post system: It's the arithmetic, stupid!";
+          sticky.querySelector("p").style.fontSize = `40px`;
+        } else {
+          sticky.querySelector("p").innerText = "After 30 years of sheer multi-partisanship, political bi-partisanship is back";
+          sticky.querySelector("p").style.fontSize = `40px`;
+        }
+      }
+
+      function init() {
+        scroller
+          .setup({
+            step: "#scrolly article .step",
+            offset: 0.33,
+            debug: false
+          })
+          .onStepEnter(handleStepEnter);
+
+        // setup resize event
+        window.addEventListener("resize", scroller.resize);
+      }
+
+      // kick things off
+      init();
+    </script>
 
 </body>
 </html>
