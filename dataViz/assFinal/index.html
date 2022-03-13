@@ -76,7 +76,7 @@
 <body>
   <main>
 	 <section id="intro">
-        <h1 class="intro__hed">A story of Mandir and Mandal in Uttar Pradesh</h1>
+        <h1 class="intro__hed">A story of Mandir and Mandal</h1>
         <p class="intro__dek" style="text-align: left;">
           A bi-party contest that converted to a multi-party one, is shifting towards bi-partisanship again.
         </p>
@@ -89,16 +89,16 @@
     </section>
     <section id="scrolly">
         <article>
-          <div class="step" data-step="1">
+          <div class="step" data-step="1" data-color="DarkOrange">
             <p>The winning BJP's so-called 'Mandir' politics is on its way towards achieving its aim of forging a national community that transcends faultlines of caste, class and region.</p>
           </div>
-          <div class="step" data-step="2">
+          <div class="step" data-step="2" data-color="OliveDrab">
             <p>The regional parties SP and BSP's crushing defeats indicates that the 'Mandal' politics has fragmented with its egalitarian charge more and more dissipated.</p>
           </div>
-          <div class="step" data-step="3">
+          <div class="step" data-step="3" data-color="RebeccaPurple">
             <p>While BJP and SP had their highest vote shares ever with 41.3% and 32.1% respectively, they won 255 and 111 seats out of the 403 respectively. The BSP, meanwhile, won just 1 seat despite a vote share of 12.9%.</p>
           </div>
-          <div class="step" data-step="4">
+          <div class="step" data-step="4" data-color="LightSlateGray">
             <p>After 30 years of multi-partisanship with various coalitions, where even a >25% vote share would affirm a victory in the elections, the last two elections have affirmed a shift back to political bi-partisanship where even 35% vote share isn't enough.</p>
           </div>
         </article>
@@ -139,15 +139,19 @@
         if (el.dataset.step == 1) {
           sticky.querySelector("p").innerText = "Mandir politics is here to stay";
           sticky.querySelector("p").style.fontSize = `40px`;
+          sticky.style.backgroundColor = el.dataset.color;
         } else if (el.dataset.step == 2) {
           sticky.querySelector("p").innerText = "Mandal politics is fading away";
           sticky.querySelector("p").style.fontSize = `40px`;
+          sticky.style.backgroundColor = el.dataset.color;
         } else if (el.dataset.step == 3) {
-          sticky.querySelector("p").innerText = "First-past-the-Post system: It's the arithmetic, stupid!";
+          sticky.querySelector("p").innerText = "In the First-past-the-Post system, it is the arithmetic, stupid!";
           sticky.querySelector("p").style.fontSize = `40px`;
+          sticky.style.backgroundColor = el.dataset.color;
         } else {
           sticky.querySelector("p").innerText = "Political bi-partisanship is back";
           sticky.querySelector("p").style.fontSize = `40px`;
+          sticky.style.backgroundColor = el.dataset.color;
         }
       }
 
