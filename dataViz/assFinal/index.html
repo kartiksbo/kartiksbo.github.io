@@ -153,7 +153,7 @@
 
           <br><iframe src='https://flo.uri.sh/visualisation/8933720/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' style='width:100%;height:600px;' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'></div>
 
-        </br>However, as the results of Uttar Pradesh's elections finally came out on the 12th of March, 2022 after a long month of voting across 7 phases, there is a lot being said about the implications of these results not only in the run-up to the 2024 National (Lok Sabha) elections but also in the context of what these recent trends mean to the future of Uttar Pradesh (UP), the 'Mandir's truimph over the 'Mandal', and India. <br><br>
+        </br>However, as the results of Uttar Pradesh's elections finally came out on the 12th of March, 2022 after a long month of voting across 7 phases, there is a lot being said about the implications of these results not only in the run-up to the 2024 National (Lok Sabha) elections but also in the context of what these recent trends mean to the future of Uttar Pradesh (UP), the 'Mandir's truimph over the 'Mandal', and India. <br>
 
         </br>Before we try to understand the current rise of BJP in UP's recent times, we need to understand its past; the political evolution of the state from the era of Congress dominance until the 70s, to political instability in the 80s, leading to the rise of two ambitious political projects that were launched almost simultaneously in the politically turbulent early part of the 90s - the Mandal and the Mandir, and how they shaped the reality of today. 
 
@@ -196,7 +196,10 @@
             <p>While BJP and SP had their highest vote shares ever with 41.3% and 32.1% respectively, they won 255 and 111 seats out of the 403 respectively. The BSP, meanwhile, won just 1 seat despite a vote share of 12.9%.</p>
           </div>
           <div class="step" data-step="4" data-color="LightSlateGray">
-            <p>After 30 years of multi-partisanship with various coalitions, where even a >25% vote share would affirm a victory in the elections, the last two elections have affirmed a shift back to political bi-partisanship where even 35% vote share isn't enough.</p>
+            <p>After 30 years of multi-partisanship with various coalitions, where even a >25% vote share would affirm a victory in the elections, the last 2 elections have affirmed a shift back to bi-partisanship where even 35% vote share isn't enough.</p>
+          </div>
+            <div class="step" data-step="5" data-color="Ochre">
+            <p>From 350+ seats in 1970s, to merely 2 seats in the 2022 election on the back of a dismal performance in 2017 as well, these elections confirm the end of the influence of any major relevance of the Congress in UP in the near future</p>
           </div>
         </article>
 
@@ -258,8 +261,12 @@
           sticky.querySelector("p").innerText = "In the First-past-the-Post system, it is the arithmetic, stupid!";
           sticky.querySelector("p").style.fontSize = `40px`;
           sticky.style.backgroundColor = el.dataset.color;
+        } else if (el.dataset.step == 4) {
+          sticky.querySelector("p").innerText = "Political bi-partisanship is back for the first time since the 70s";
+          sticky.querySelector("p").style.fontSize = `40px`;
+          sticky.style.backgroundColor = el.dataset.color;
         } else {
-          sticky.querySelector("p").innerText = "Political bi-partisanship is back";
+          sticky.querySelector("p").innerText = "The end of Congress' relevance in U.P.?";
           sticky.querySelector("p").style.fontSize = `40px`;
           sticky.style.backgroundColor = el.dataset.color;
         }
